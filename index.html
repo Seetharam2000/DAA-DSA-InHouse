@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DAA PROJECT</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+
+  <!-- Blockly -->
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+  <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+</head>
+
+<body>
+  <h1>Coding Blocks</h1>
+
+  <div>
+    <label for="difficulty">Choose Difficulty: </label>
+    <select id="difficulty" onchange="setDifficulty()">
+      <option value="basic">🌱 Basic</option>
+      <option value="intermediate">💡 Intermediate</option>
+      <option value="advanced">🔥 Advanced</option>
+    </select>
+
+    <label for="language">Choose Language: </label>
+    <select id="language">
+      <option value="python">Python</option>
+      <option value="javascript">JavaScript</option>
+      <option value="cpp">C++</option>
+      <option value="c">C</option>
+    </select>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div id="xpDisplay">XP: 0 | Level: 1</div>
+  <button onclick="resetXP()">Reset XP</button>
+
+  <div id="blocklyDiv"></div>
+  <button onclick="generateCode()">✨ Generate Code</button>
+  <button onclick="runCode()">🚀 Run Code</button>
+  <button onclick="startChallenge()">🎯 Start Coding Challenge</button>
+
+  <h3>Generated Code:</h3>
+  <pre id="codeOutput"></pre>
+
+  <div id="challengeModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -20%); background:rgb(255, 255, 255); padding:20px; border:1px solid #ccc; border-radius:8px; z-index:1000;">
+    <p id="challengeText" style="font-weight:bold;"></p>
+    <button onclick="checkChallenge()">Check</button>
+    <p id="challengeResult"></p>
+</div>
+</body>
+</html>
