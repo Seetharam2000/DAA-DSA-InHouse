@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import HallOfDeaths from './HallOfDeaths';
+import ReplayTheater from './ReplayTheater';
 
 export default function ProblemPanel({ problem }) {
   const [open, setOpen] = useState(false);
@@ -48,6 +50,21 @@ export default function ProblemPanel({ problem }) {
           )}
         </AnimatePresence>
       </div>
+
+      {problem.mutationCase && (
+        <div className="rounded-2xl border border-coral/20 bg-coral/10 p-4 text-sm text-text">
+          <h3 className="mb-2 font-semibold text-text">Mutation boss attack</h3>
+          <p className="mb-3 text-text-muted">{problem.mutationCase.prompt}</p>
+          <div className="rounded-2xl border border-border bg-bg-editor/90 p-3">
+            <p className="text-xs uppercase tracking-[0.25em] text-text-dim">Mutation test case</p>
+            <pre className="mt-2 overflow-x-auto whitespace-pre-wrap font-code text-sm text-text">{problem.mutationCase.input}</pre>
+            <p className="mt-2 text-sm text-mint">Expected: {problem.mutationCase.output}</p>
+          </div>
+        </div>
+      )}
+
+      <HallOfDeaths failures={problem.failureHall} />
+      <ReplayTheater replays={problem.replays} />
     </div>
   );
 }

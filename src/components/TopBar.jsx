@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useAppStore from '../store/useAppStore';
 
 export default function TopBar() {
+  const navigate = useNavigate();
   const xp = useAppStore((state) => state.xp);
   const streak = useAppStore((state) => state.streak);
   const user = useAppStore((state) => state.user);
+  const settings = useAppStore((state) => state.settings);
+
+  const statusText = useMemo(() => (settings.enabled ? 'Audio + AI active' : 'Silent mode'), [settings.enabled]);
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 rounded-[24px] border border-border bg-bg-panel/80 px-4 py-3 shadow-glow">
@@ -14,11 +20,18 @@ export default function TopBar() {
         </div>
         <div>
           <p className="font-display text-lg font-semibold">LVL.UP</p>
-          <p className="text-sm text-text-muted">Arena ready</p>
+          <p className="text-sm text-text-muted">{statusText}</p>
         </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={() => navigate('/settings')}
+          className="rounded-full border border-border bg-bg-panel-2 px-4 py-2 text-sm text-text-muted transition hover:border-white/20 hover:text-white"
+        >
+          Settings
+        </button>
         <div className="rounded-full border border-amber/20 bg-amber/10 px-3 py-2 text-sm text-amber">
           🔥 {streak} day streak
         </div>

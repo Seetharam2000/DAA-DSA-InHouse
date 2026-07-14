@@ -21,6 +21,7 @@ export default function ArenaLayout() {
   const streak = useAppStore((state) => state.streak);
   const setXp = useAppStore((state) => state.setXp);
   const setStreak = useAppStore((state) => state.setStreak);
+  const resetProblem = useAppStore((state) => state.resetProblem);
   const [hp, setHp] = useState(currentProblem.hp);
   const [tests, setTests] = useState(initialTests);
   const [status, setStatus] = useState('Ready');
@@ -54,6 +55,11 @@ export default function ArenaLayout() {
       setXp(xp + currentProblem.xpReward);
       setStreak(streak + 1);
       await new Promise((resolve) => setTimeout(resolve, 650));
+      const nextProblem = resetProblem();
+      setHp(nextProblem.hp);
+      setTests(initialTests);
+      setStatus('Ready');
+      setVictory(false);
     }
   };
 
