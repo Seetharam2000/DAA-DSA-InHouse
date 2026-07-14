@@ -74,7 +74,7 @@ const replays = [
   },
 ];
 
-export default function LvlUpMockup() {
+export default function ByteBrawlMockup() {
   const [language, setLanguage] = useState('Python');
   const [code, setCode] = useState(starterTemplates.Python);
   const [hintOpen, setHintOpen] = useState(false);
@@ -126,12 +126,12 @@ export default function LvlUpMockup() {
   const progress = currentReplay.events.length > 1 ? Math.round((replayStep / (currentReplay.events.length - 1)) * 100) : 0;
 
   return (
-    <div className="lvlup-shell">
+    <div className="bytebrawl-shell">
       <div className="mockup-grid">
         <section className="hero-panel">
           <div className="hero-copy">
             <span className="eyebrow">Shared boss raid</span>
-            <h1>LvlUp arena</h1>
+            <h1>ByteBrawl arena</h1>
             <p>Practice with a boss battle flow, mutation tests, and a public feed of glorious failures.</p>
           </div>
           <div className="metrics-card">
@@ -255,7 +255,7 @@ export default function LvlUpMockup() {
       </div>
 
       <style>{`
-        .lvlup-shell {
+        .bytebrawl-shell {
           min-height: 100vh;
           padding: 32px;
           background: radial-gradient(circle at top left, rgba(255, 61, 113, 0.16), transparent 22%),

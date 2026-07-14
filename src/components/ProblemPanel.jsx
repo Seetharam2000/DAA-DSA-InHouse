@@ -1,38 +1,59 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import HallOfDeaths from './HallOfDeaths';
-import ReplayTheater from './ReplayTheater';
 
 export default function ProblemPanel({ problem }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="space-y-4 rounded-[28px] border border-border bg-bg-panel/80 p-5 shadow-glow">
-      <div className="space-y-3">
+    <div className="space-y-6 rounded-[32px] border border-[#352d5a] bg-[#171224] p-6 shadow-glow">
+      <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
           {problem.tags.map((tag) => (
-            <span key={tag} className={`rounded-full px-3 py-1 text-xs font-semibold ${tag.includes('XP') ? 'bg-coral/15 text-coral' : 'bg-bg-panel-2 text-text-muted'}`}>
+            <span
+              key={tag}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ${tag.includes('XP') ? 'bg-coral/15 text-coral' : 'bg-[#1f1732] text-text-muted'}`}
+            >
               {tag}
             </span>
           ))}
         </div>
-        <h1 className="text-2xl font-semibold text-text">{problem.title}</h1>
-        <p className="text-sm leading-7 text-text-muted">{problem.description}</p>
+        <div className="space-y-3">
+          <h1 className="text-3xl font-semibold tracking-tight text-text">{problem.title}</h1>
+          <p className="max-w-2xl text-sm leading-7 text-text-muted">{problem.description}</p>
+        </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {problem.examples.map((example, index) => (
-          <div key={index} className="rounded-2xl border border-border bg-bg-editor/90 p-4">
-            <p className="mb-2 text-sm font-semibold text-mint">Example {index + 1}</p>
-            <pre className="overflow-x-auto whitespace-pre-wrap font-code text-sm text-text">{example.input}</pre>
-            <pre className="mt-2 overflow-x-auto whitespace-pre-wrap font-code text-sm text-mint">{example.output}</pre>
-            <p className="mt-2 text-sm text-text-muted">{example.explanation}</p>
+          <div key={index} className="rounded-[28px] border border-[#2e2447] bg-[#0d0816] p-5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-text-muted">
+                Example {index + 1}
+              </p>
+              <span className="rounded-full bg-[#1f1732] px-3 py-1 text-xs uppercase tracking-[0.22em] text-text-muted">
+                test case
+              </span>
+            </div>
+            <div className="grid gap-3 md:grid-cols-[0.95fr_0.6fr]">
+              <pre className="whitespace-pre-wrap rounded-3xl border border-[#2e2447] bg-[#11081c] p-4 text-sm font-code text-text leading-6">
+{example.input}
+              </pre>
+              <div className="rounded-3xl border border-[#2e2447] bg-[#111119] p-4">
+                <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Output</p>
+                <p className="mt-3 text-lg font-semibold text-mint">{example.output}</p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-7 text-text-muted">{example.explanation}</p>
           </div>
         ))}
       </div>
 
-      <div className="rounded-2xl border border-border bg-bg-panel-2/60 p-4">
-        <button type="button" onClick={() => setOpen((value) => !value)} className="flex w-full items-center justify-between text-left text-sm font-semibold text-text">
+      <div className="rounded-[28px] border border-[#362f5b] bg-[#140d24] p-5">
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="flex w-full items-center justify-between text-left text-sm font-semibold text-text"
+        >
           Ask for a nudge
           <span className="text-text-muted">{open ? '−' : '+'}</span>
         </button>
@@ -45,26 +66,12 @@ export default function ProblemPanel({ problem }) {
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <p className="mt-3 text-sm leading-7 text-text-muted">{problem.hint}</p>
+              <p className="mt-4 text-sm leading-7 text-text-muted">{problem.hint}</p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {problem.mutationCase && (
-        <div className="rounded-2xl border border-coral/20 bg-coral/10 p-4 text-sm text-text">
-          <h3 className="mb-2 font-semibold text-text">Mutation boss attack</h3>
-          <p className="mb-3 text-text-muted">{problem.mutationCase.prompt}</p>
-          <div className="rounded-2xl border border-border bg-bg-editor/90 p-3">
-            <p className="text-xs uppercase tracking-[0.25em] text-text-dim">Mutation test case</p>
-            <pre className="mt-2 overflow-x-auto whitespace-pre-wrap font-code text-sm text-text">{problem.mutationCase.input}</pre>
-            <p className="mt-2 text-sm text-mint">Expected: {problem.mutationCase.output}</p>
-          </div>
-        </div>
-      )}
-
-      <HallOfDeaths failures={problem.failureHall} />
-      <ReplayTheater replays={problem.replays} />
     </div>
   );
 }

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userXP >= userLevel * 50) {
             userLevel++;
             localStorage.setItem("userLevel", userLevel);
-            alert("🎉 Level Up! New blocks unlocked.");
+            alert("Level Up! New blocks unlocked.");
             setDifficulty(); // Refresh workspace with new unlocked blocks
         }
 
@@ -136,15 +136,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    document.getElementById("codeOutput").innerText = "⚠️ Error: " + data.error;
+                    document.getElementById("codeOutput").innerText = "Error: " + data.error;
                 } else {
-                    document.getElementById("codeOutput").innerText = "✅ Output:\n" + data.output;
+                    document.getElementById("codeOutput").innerText = "Output:\n" + data.output;
                     updateXP(20); // Earn XP for running code successfully
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                document.getElementById("codeOutput").innerText = "⚠️ Failed to connect to server. Make sure Flask is running.";
+                document.getElementById("codeOutput").innerText = "Failed to connect to server. Make sure Flask is running.";
             });
     };
 
@@ -206,19 +206,19 @@ window.startChallenge = function () {
 function showChallenge() {
     let currentLevelChallenges = allChallenges[userLevel];
     if (!currentLevelChallenges) {
-        alert("🎉 You've completed all levels!");
+        alert("You've completed all levels!");
         return;
     }
 
     if (currentChallengeIndex >= currentLevelChallenges.length) {
         if (correctAnswers >= 5) {
-            alert("🎉 You passed the level! Level up!");
+            alert("You passed the level! Level up!");
             userLevel++;
             localStorage.setItem("userLevel", userLevel);
             updateXPDisplay();
             setDifficulty();
         } else {
-            alert("❌ You got less than 5 correct. Try again!");
+            alert("You got less than 5 correct. Try again!");
         }
         document.getElementById("challengeModal").style.display = "none";
         return;
@@ -239,9 +239,9 @@ window.checkChallenge = function () {
     if (isCorrect) {
         correctAnswers++;
         updateXP(challenge.xp);
-        document.getElementById("challengeResult").innerText = "✅ Correct!";
+        document.getElementById("challengeResult").innerText = "Correct!";
     } else {
-        document.getElementById("challengeResult").innerText = "❌ Incorrect. Try next one.";
+        document.getElementById("challengeResult").innerText = "Incorrect. Try next one.";
     }
 
     currentChallengeIndex++;

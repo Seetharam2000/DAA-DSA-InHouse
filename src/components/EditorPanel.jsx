@@ -26,36 +26,41 @@ export default function EditorPanel({ onSubmit, tests, status, setTests, setStat
   };
 
   return (
-    <div className="rounded-[28px] border border-border bg-bg-panel/80 p-4 shadow-glow">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex rounded-full border border-border bg-bg-panel-2 p-1">
-          {languageOptions.map((option) => (
-            <button
-              key={option}
-              type="button"
-              onClick={() => {
-                setLanguage(option);
-                setCode(starterCode[option] || starterCode.python);
-              }}
-              className={`rounded-full px-3 py-2 text-sm ${language === option ? 'bg-coral text-white' : 'text-text-muted'}`}
-            >
-              {option === 'python' ? 'Python' : option === 'javascript' ? 'JavaScript' : option === 'java' ? 'Java' : 'C++'}
-            </button>
-          ))}
+    <div className="rounded-[32px] border border-[#3d2e57] bg-[#171224] p-5 shadow-glow">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p className="text-xs uppercase tracking-[0.28em] text-text-muted">Solution lab</p>
+          <p className="mt-2 text-sm text-text-muted">Run your code, keep the boss bleeding, and watch the failure feed.</p>
         </div>
-        <div className="flex gap-2">
-          <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={handleRun} className="rounded-2xl border border-border bg-bg-panel-2 px-3 py-2 text-sm text-text">
+        <div className="flex items-center gap-2">
+          <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={handleRun} className="rounded-full border border-[#2f2349] bg-[#0f0815] px-4 py-2 text-sm text-text-muted transition hover:border-coral/40 hover:text-white">
             Run
           </motion.button>
-          <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={handleRun} className="rounded-2xl bg-gradient-to-r from-coral to-[#ff6b8a] px-3 py-2 text-sm font-semibold text-white">
+          <motion.button whileTap={{ scale: 0.97 }} type="button" onClick={handleRun} className="rounded-full bg-gradient-to-r from-coral to-[#ff7a96] px-4 py-2 text-sm font-semibold text-white shadow-glow">
             Submit
           </motion.button>
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-[24px] border border-border bg-bg-editor">
+      <div className="mb-4 flex flex-wrap gap-3 rounded-full border border-[#2f2349] bg-[#0d0816] p-1">
+        {languageOptions.map((option) => (
+          <button
+            key={option}
+            type="button"
+            onClick={() => {
+              setLanguage(option);
+              setCode(starterCode[option] || starterCode.python);
+            }}
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${language === option ? 'bg-coral text-black' : 'text-text-muted hover:text-white'}`}
+          >
+            {option === 'python' ? 'Python' : option === 'javascript' ? 'JavaScript' : option === 'java' ? 'Java' : 'C++'}
+          </button>
+        ))}
+      </div>
+
+      <div className="overflow-hidden rounded-[28px] border border-[#2f2349] bg-[#09060e] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]">
         <Editor
-          height="320px"
+          height="360px"
           language={language === 'javascript' ? 'javascript' : language === 'java' ? 'java' : language === 'cpp' ? 'cpp' : 'python'}
           theme="vs-dark"
           value={code}

@@ -16,6 +16,7 @@ const useAppStore = create((set) => ({
     autoSummary: true,
   },
   setUser: (user) => set({ user }),
+  logout: () => set({ user: null }),
   setXp: (xp) => set({ xp }),
   setStreak: (streak) => set({ streak }),
   setCurrentProblem: (problem) => set({ currentProblem: problem }),

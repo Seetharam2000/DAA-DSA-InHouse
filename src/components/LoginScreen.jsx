@@ -13,7 +13,7 @@ export default function LoginScreen() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    document.title = mode === 'login' ? 'LVL.UP · Log in' : 'LVL.UP · Sign up';
+    document.title = mode === 'login' ? 'ByteBrawl · Log in' : 'ByteBrawl · Sign up';
   }, [mode]);
 
   const handleAuth = async (event) => {
@@ -44,7 +44,7 @@ export default function LoginScreen() {
           className="login-card"
         >
           <div className="brand-panel">
-            <span className="brand-eyebrow">LVL.UP</span>
+            <span className="brand-eyebrow">ByteBrawl</span>
             <h1>Train like a boss, not a bot.</h1>
             <p>Continue your streak with a feel-good login page and smooth 3D glitter behind it.</p>
           </div>
@@ -129,8 +129,11 @@ export default function LoginScreen() {
         .login-shell {
           position: relative;
           min-height: 100vh;
-          background: #05030c;
-          color: #f5f1ff;
+          background: radial-gradient(circle at 15% 18%, rgba(124, 97, 255, 0.16), transparent 22%),
+            radial-gradient(circle at 80% 12%, rgba(14, 211, 255, 0.08), transparent 20%),
+            radial-gradient(circle at 80% 84%, rgba(255, 255, 255, 0.04), transparent 16%),
+            #04030b;
+          color: #f8f6ff;
           font-family: Inter, sans-serif;
           overflow: hidden;
         }
@@ -146,53 +149,59 @@ export default function LoginScreen() {
         .login-card {
           width: min(100%, 1040px);
           display: grid;
-          grid-template-columns: 1.1fr 1fr;
+          grid-template-columns: 1.05fr 0.95fr;
           gap: 24px;
-          padding: 30px;
-          border-radius: 34px;
+          padding: 36px;
+          border-radius: 36px;
           border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(12, 8, 20, 0.88);
-          box-shadow: 0 36px 100px rgba(0,0,0,0.35);
-          backdrop-filter: blur(20px);
+          background: rgba(8, 5, 15, 0.92);
+          box-shadow: 0 46px 120px rgba(0,0,0,0.42);
+          backdrop-filter: blur(24px);
+        }
+        .brand-panel {
+          display: grid;
+          gap: 26px;
+          padding: 14px 0;
         }
         .brand-panel h1 {
           margin: 0;
-          font-size: clamp(2.4rem, 2.1vw, 3.4rem);
+          font-size: clamp(2.2rem, 2.2vw, 3.6rem);
           line-height: 0.98;
+          max-width: 16ch;
         }
         .brand-eyebrow {
           display: inline-block;
-          margin-bottom: 18px;
-          color: #9f91c4;
+          margin-bottom: 14px;
+          color: #9e90ff;
           text-transform: uppercase;
-          letter-spacing: 0.3em;
+          letter-spacing: 0.32em;
           font-size: 0.78rem;
         }
         .brand-panel p {
-          margin-top: 18px;
+          margin-top: 8px;
           line-height: 1.9;
-          color: #c2b9e8;
-          max-width: 36rem;
+          color: #cfc7ff;
+          max-width: 34rem;
         }
         .feature-grid {
           display: grid;
           gap: 16px;
-          margin-top: 24px;
+          margin-top: 18px;
         }
         .feature-pill {
-          padding: 18px;
+          padding: 20px;
           border-radius: 26px;
-          border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(14, 9, 22, 0.95);
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(16, 11, 24, 0.95);
         }
         .feature-pill strong {
           display: block;
-          color: #fff;
+          color: #f5f1ff;
           margin-bottom: 8px;
         }
         .feature-pill span {
-          color: #b7afe4;
-          line-height: 1.8;
+          color: #c9c3f5;
+          line-height: 1.85;
         }
         .auth-panel {
           display: flex;
@@ -207,17 +216,17 @@ export default function LoginScreen() {
         .tab {
           padding: 13px 20px;
           border-radius: 999px;
-          border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(10, 6, 16, 0.9);
-          color: #c9c1ef;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(14, 10, 20, 0.85);
+          color: #c9c3f5;
           font-weight: 600;
           cursor: pointer;
           transition: all 180ms ease;
         }
         .tab.active {
-          background: #ff3d71;
-          color: #0f0b1a;
-          border-color: rgba(255,255,255,0.14);
+          background: rgba(124, 97, 255, 0.18);
+          color: #f8f6ff;
+          border-color: rgba(124,97,255,0.24);
         }
         .auth-form {
           display: grid;
@@ -227,8 +236,8 @@ export default function LoginScreen() {
           width: 100%;
           border-radius: 24px;
           border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(10, 7, 18, 0.94);
-          color: #f7f2ff;
+          background: rgba(12, 9, 18, 0.96);
+          color: #f8f6ff;
           padding: 18px 20px;
           font-family: JetBrains Mono, monospace;
           font-size: 0.95rem;
@@ -236,8 +245,8 @@ export default function LoginScreen() {
           transition: border-color 180ms ease, box-shadow 180ms ease;
         }
         .auth-form input:focus {
-          border-color: #ff3d71;
-          box-shadow: 0 0 0 4px rgba(255,61,113,0.12);
+          border-color: #7c61ff;
+          box-shadow: 0 0 0 4px rgba(124,97,255,0.14);
         }
         .form-meta {
           display: flex;
@@ -256,23 +265,23 @@ export default function LoginScreen() {
         .checkbox-row input {
           width: 16px;
           height: 16px;
-          accent-color: #ff3d71;
+          accent-color: #7c61ff;
         }
         .link-button {
           border: none;
           background: transparent;
-          color: #ad9bf2;
+          color: #a89bf0;
           font-size: 0.95rem;
           cursor: pointer;
           transition: color 180ms ease;
         }
         .link-button:hover {
-          color: #f3e7ff;
+          color: #f2ebff;
         }
         .form-error {
-          color: #ffb020;
-          background: rgba(255,176,32,0.1);
-          border: 1px solid rgba(255,176,32,0.18);
+          color: #ffd18f;
+          background: rgba(255,209,143,0.12);
+          border: 1px solid rgba(255,209,143,0.2);
           border-radius: 20px;
           padding: 14px 18px;
         }
@@ -280,18 +289,23 @@ export default function LoginScreen() {
           width: 100%;
           padding: 18px 20px;
           border-radius: 26px;
-          background: linear-gradient(135deg, #ff3d71 0%, #ff8a9f 100%);
-          color: #fff;
+          background: linear-gradient(135deg, #7c61ff 0%, #32d6ff 100%);
+          color: #0b0710;
           border: none;
           font-weight: 700;
           letter-spacing: 0.02em;
           cursor: pointer;
+          transition: transform 160ms ease, filter 160ms ease;
+        }
+        .submit-button:hover {
+          transform: translateY(-1px);
+          filter: saturate(1.05);
         }
         .alt-login {
           display: grid;
           gap: 16px;
           text-align: center;
-          color: #b3abde;
+          color: #b9b0f4;
           font-size: 0.92rem;
         }
         .social-buttons {
@@ -303,8 +317,8 @@ export default function LoginScreen() {
           padding: 16px 18px;
           border-radius: 22px;
           border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(13, 8, 19, 0.97);
-          color: #e7e1ff;
+          background: rgba(17, 12, 24, 0.98);
+          color: #e7e3ff;
           cursor: pointer;
         }
         @media (max-width: 980px) {
